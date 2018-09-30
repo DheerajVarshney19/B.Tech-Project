@@ -1,0 +1,177 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="scotchTodo">
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>Node/Angular Todo App</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    
+
+    <title>Fake News Detector</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    <script src="core.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL TODOS -->
+<body ng-controller="mainController">
+    <!-- <div class="container"> -->
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"></a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Team</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>News Fidelity Analyser & Classifier</h1>
+              <span class="subheading">Don't believe everything you read on the internet</span>
+            </div>
+          </div>
+      </div>
+    </header>
+
+
+
+ <div class="container-fluid">
+   <div class="row">
+     <div class="col-lg-8 col-md-10 mx-auto">
+       <div class="input-group input-group-lg">
+         <input type="text" class="form-control input-lg text-center" placeholder="Enter news here" ng-model="formData.text">
+         <div class="input-group-prepend">
+            <button type="submit" class="btn btn-primary btn-lg" ng-click="detectTodo()" style="margin-right:16px">Detect</button>
+             <button type="submit" class="btn btn-primary btn-lg" ng-click="classifyTodo()">Classify</button>
+         </div><span style="width: 25px;">  </span>
+         <div ng-show = "IsVisible" class="loader pull-right"><i class="fa fa-spinner fa-spin"  style="font-size:48px"></i></div>
+       </div>
+     </div>
+   </div>
+ </div>
+
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 mx-auto"  align="center"> <h2>Fake or Real? </h2></div>
+            <div class="col-lg-6 col-md-6 mx-auto pull-left"   id= "output1"> </div>
+        </div>
+    </div>
+
+    <br>
+
+    <!--<div class="container-fluid">-->
+        <!--<div class="row">-->
+            <!--<div class="col-lg-8 col-md-10 mx-auto">-->
+                <!--<div class="input-group input-group-lg">-->
+                    <!--<input type="text" class="form-control input-lg text-center" placeholder="Enter news here" ng-model="formData.text">-->
+                    <!--<div class="input-group-prepend">-->
+                        <!--<button type="submit" class="btn btn-primary btn-lg" ng-click="classifyTodo()">Classify</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <br>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 mx-auto"  align="center"><h2>Classified as: </h2> </div>
+            <div class="col-lg-6 col-md-6 mx-auto pull-left" id="output2"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-preview">
+            <a href="#">
+              <h2 class="post-title">
+                Detect fake news using the power of Machine Learning.
+              </h2>
+              <h3 class="post-subtitle">
+              </h3>
+            </a>
+            <!--<p class="post-meta">Posted by-->
+              <!--<a href="#">Start Bootstrap</a>-->
+              <!--on September 24, 2018</p>-->
+          </div>
+          <!-- Pager -->
+        </div>
+      </div>
+    </div>
+
+<hr>
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <ul class="list-inline text-center">
+              
+            </ul>
+            <p class="copyright text-muted">Copyright &copy;  Group 39</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/clean-blog.min.js"></script>
+
+    </div>
+
+</body>
+</html>
